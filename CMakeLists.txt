@@ -19,7 +19,6 @@ else()
 endif()
 
 # boost as a required dependency for mylib
-find_package(Boost REQUIRED)
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 include_directories(
         include
@@ -27,8 +26,7 @@ include_directories(
 )
 
 add_library(kalman_filter STATIC src/kalman_filter.cpp)
-target_link_libraries(kalman_filter PRIVATE "${Boost_LIBRARIES}" Eigen3::Eigen)
-target_include_directories(kalman_filter PRIVATE "${Boost_INCLUDE_DIR}")
+target_link_libraries(kalman_filter PRIVATE Eigen3::Eigen)
 
 add_executable(main src/main.cpp)
 target_link_libraries(main kalman_filter)
